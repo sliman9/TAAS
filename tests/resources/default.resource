@@ -18,3 +18,4 @@ Suite Setup
 
 Suite Teardown
     Close All Browsers
+    Capture Page Screenshot

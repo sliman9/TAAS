@@ -22,5 +22,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r .github/requirements.txt
 
-      - name: Run tests with pytest
-        run: robot tests/
+      - name: Run Robot Framework tests
+        run: |
+          robot tests/
+
+      - name: Upload Robot Framework logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-logs
+          path: |
+            output.xml
+            log.html
+            report.html
+
+      - name: Upload Screenshots (if any)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-screenshots
+          path: |
+            **/selenium-screenshot-*.png
