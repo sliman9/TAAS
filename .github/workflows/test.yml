@@ -24,7 +24,6 @@ jobs:
         source venv/bin/activate  # For Linux/macOS
         pip install --upgrade pip
         pip install -r requirements.txt
-        pip install robotframework  # Ensure Robot Framework is installed
 
     - name: Run Selenium test
       run: |
