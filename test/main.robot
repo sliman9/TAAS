@@ -1,11 +1,8 @@
 *** Settings ***
-Library    SeleniumLibrary
-Library    SeleniumLibrary
-
-*** Keywords ***
+Library           SeleniumLibrary
 
 *** Test Cases ***
-Open webbrowser
-    Open Browser    https://practicesoftwaretesting.com 
-Close webbrowser
-    Close All Browsers
+Open Browser Test
+    Open Browser    https://practicesoftwaretesting.com/    chrome
+    Sleep    2s
+    Close Browser
