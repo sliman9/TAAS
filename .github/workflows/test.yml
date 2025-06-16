@@ -22,12 +22,11 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    - name: Install browser drivers
+    - name: Install Google Chrome
       run: |
         sudo apt-get update
-        sudo apt-get install -y chromium-driver
-        echo "CHROME_BIN=/usr/bin/chromium-browser" >> $GITHUB_ENV
-        echo "CHROMEDRIVER=/usr/bin/chromedriver" >> $GITHUB_ENV
+        sudo apt-get install -y google-chrome-stable
+        echo "BROWSER=chrome" >> $GITHUB_ENV
 
     - name: Run Robot Tests
       run: |
