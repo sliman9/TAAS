@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.2 on darwin)" generated="2025-06-16T12:38:24.709642" rpa="false" schemaversion="5">
+<suite id="s1" name="Main" source="/Users/sulaimanhashimi/Documents/IT/Github/TAAS/main.robot">
+<test id="s1-t1" name="Open webbrowser" line="8">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-06-16T12:38:24.789347" level="INFO">Opening browser 'chrome' to base url 'https://practicesoftwaretesting.com'.</msg>
+<arg>https://practicesoftwaretesting.com</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-06-16T12:38:24.789246" elapsed="5.709792"/>
+</kw>
+<status status="PASS" start="2025-06-16T12:38:24.788768" elapsed="5.710959"/>
+</test>
+<test id="s1-t2" name="Close webbrowser" line="11">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-06-16T12:38:30.500263" elapsed="0.070603"/>
+</kw>
+<status status="PASS" start="2025-06-16T12:38:30.499950" elapsed="0.071058"/>
+</test>
+<status status="PASS" start="2025-06-16T12:38:24.710214" elapsed="5.861034"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Main" id="s1" pass="2" fail="0" skip="0">Main</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

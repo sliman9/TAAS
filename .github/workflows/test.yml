@@ -1,4 +1,4 @@
-name: Run Selenium Test
+name: Run Robot Framework Tests
 
 on:
   push:
@@ -22,6 +22,13 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    - name: Run Selenium test
+    - name: Install browser drivers
       run: |
-        main.robot "https://practicesoftwaretesting.com/"
+        sudo apt-get update
+        sudo apt-get install -y chromium-driver
+        echo "CHROME_BIN=/usr/bin/chromium-browser" >> $GITHUB_ENV
+        echo "CHROMEDRIVER=/usr/bin/chromedriver" >> $GITHUB_ENV
+
+    - name: Run Robot Tests
+      run: |
+        robot main.robot
