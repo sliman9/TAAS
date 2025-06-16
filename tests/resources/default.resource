@@ -1,6 +1,9 @@
 *** Settings ***
 Resource    resources.resource
 
+*** Variables ***
+${URL}    https://www.automationexercise.com
+
 *** Keywords ***
 Open Chrome Headless
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
@@ -11,7 +14,7 @@ Open Chrome Headless
 
 Suite Setup
     Open Chrome Headless
-    Go To    https://www.automationexercise.com
+    Go To    ${URL}
 
 Suite Teardown
     Close All Browsers
