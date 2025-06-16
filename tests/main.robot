@@ -1,10 +1,8 @@
 *** Settings ***
 Library    SeleniumLibrary
 
-*** Variables ***
-${OPTIONS}    headless    disable-gpu    no-sandbox    disable-dev-shm-usage
-
 *** Test Cases ***
-Open Chrome Headless
-    Open Browser    https://www.google.com    Chrome    options=${OPTIONS}
-    [Teardown]    Close All Browsers
+Open
+    Open Browser    https://www.google.com    Chrome    options=add_argument(--headless --no-sandbox --disable-dev-shm-usage)
+Close
+    Close All Browsers
