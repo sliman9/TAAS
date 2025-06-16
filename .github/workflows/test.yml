@@ -24,4 +24,4 @@ jobs:
 
     - name: Run Selenium test
       run: |
-        python test_suite.py "https://practicesoftwaretesting.com/"
+        main.robot "https://practicesoftwaretesting.com/"
