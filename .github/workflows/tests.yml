@@ -22,24 +22,12 @@ jobs:
       run: |
         python3 -m venv venv
         source venv/bin/activate
-        pip3 install --upgrade pip
         pip3 install robotframework robotframework-seleniumlibrary
 
     - name: Set up Chrome and ChromeDriver
-      run: |
-        # Install Chrome
-        brew install --cask google-chrome
-        # Get Chrome version
-        CHROME_VERSION=$(google-chrome --version | sed -E 's/.* ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+).*/\1/')
-        echo "Chrome version: $CHROME_VERSION"
-        # Get compatible ChromeDriver version
-        CHROMEDRIVER_VERSION=$(curl -sS "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-        echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
-        # Download and install ChromeDriver
-        wget -N "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_mac64.zip"
-        unzip chromedriver_mac64.zip
-        chmod +x chromedriver
-        sudo mv chromedriver /usr/local/bin/
+      uses: browser-actions/setup-chrome@latest
+      with:
+        chrome-version: 'stable'
 
     - name: Run Selenium test
       run: |
