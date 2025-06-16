@@ -1,0 +1,47 @@
+name: Run Selenium Test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python3 -m venv venv
+        source venv/bin/activate
+        pip3 install --upgrade pip
+        pip3 install robotframework robotframework-seleniumlibrary
+
+    - name: Set up Chrome and ChromeDriver
+      run: |
+        # Install Chrome
+        brew install --cask chromium
+        # Get Chrome version
+        CHROME_VERSION=$(chromium --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
+        echo "Chrome version: $CHROME_VERSION"
+        # Get compatible ChromeDriver version
+        CHROMEDRIVER_VERSION=$(curl -sS "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+        echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
+        # Download and install ChromeDriver
+        wget -N "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_mac64.zip"
+        unzip chromedriver_mac64.zip
+        chmod +x chromedriver
+        sudo mv chromedriver /usr/local/bin/
+
+    - name: Run Selenium test
+      run: |
+        source venv/bin/activate
+        robot test/main.robot
