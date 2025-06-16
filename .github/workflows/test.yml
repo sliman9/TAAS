@@ -21,11 +21,12 @@ jobs:
     - name: Install dependencies
       run: |
         python -m venv venv
-        source venv/bin/activate  # For Linux/macOS
+        source venv/bin/activate
         pip install --upgrade pip
+        pip install robotframework robotframework-seleniumlibrary
         pip install -r requirements.txt
 
     - name: Run Selenium test
       run: |
-        source venv/bin/activate  # For Linux/macOS
-        robot test/main.robot "https://practicesoftwaretesting.com/"
+        source venv/bin/activate
+        robot --variable BROWSER_URL:https://practicesoftwaretesting.com/ test/main.robot
