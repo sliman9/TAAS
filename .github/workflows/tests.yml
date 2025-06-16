@@ -28,9 +28,9 @@ jobs:
     - name: Set up Chrome and ChromeDriver
       run: |
         # Install Chrome
-        brew install --cask chromium
+        brew install --cask google-chrome
         # Get Chrome version
-        CHROME_VERSION=$(chromium --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
+        CHROME_VERSION=$(google-chrome --version | sed -E 's/.* ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+).*/\1/')
         echo "Chrome version: $CHROME_VERSION"
         # Get compatible ChromeDriver version
         CHROMEDRIVER_VERSION=$(curl -sS "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
@@ -44,4 +44,4 @@ jobs:
     - name: Run Selenium test
       run: |
         source venv/bin/activate
-        robot test/main.robot
+        robot main.robot
